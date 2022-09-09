@@ -1,2 +1,2 @@
-# Automate & Analysis Of Sakani Dataset
+# Analysis & Automation Of Sakani Dataset
 
