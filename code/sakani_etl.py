@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import zipfile as zp
 from dotenv import dotenv_values
+from IPython.display import display
 
 #importing our secrets from environment varibales
 config = dotenv_values(".env")
@@ -57,7 +58,7 @@ df['publish_date'].ffill(inplace=True) #filling nan values with prev value
 df['under_construction_status'].fillna('no entry', inplace=True)
 
 #lets see the dataset after cleaning and before loading it to the DWH
-df.style #here we see the dataset in style of dataframe
+display(df.head()) #here we see the dataset in style of dataframe
 print(f"Dataset rows/columns: {df.shape}") #here we see the dataset shape after cleaning
 
 #lets save the new data to diff location
