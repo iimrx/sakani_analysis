@@ -18,9 +18,9 @@ kgl_api.authenticate()
 
 
 #lets unzip the file containing the dataset
-data_folder_path = 'new_dataset'
+data_folder_path = '../new_dataset'
 kaggle_dataset = 'majedalhulayel/sakani-projects-saudi-arabia'
-extracted_dataset_path = 'new_dataset/sakani-projects-saudi-arabia.zip'
+extracted_dataset_path = '../new_dataset/sakani-projects-saudi-arabia.zip'
 
 #lets get the data
 kgl_api.dataset_download_files(kaggle_dataset, data_folder_path)
@@ -41,7 +41,7 @@ except:
   print("Invalid file")
 
 #lets play with the dataset
-df = pd.read_csv("new_dataset/Sakani Projects.csv")
+df = pd.read_csv("../new_dataset/Sakani Projects.csv")
 print(df.head())
 # #len of the old columns
 # print(f'Length of Data (Before Column Filtered): {len(df.columns)}')
