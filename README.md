@@ -4,3 +4,5 @@
 ![](https://img.shields.io/github/repo-size/iiabdulrazak/sakani_analysis?label=project%20size)
 
 # Analysis & Automation Of Sakani Dataset
+Data Link: https://raw.githubusercontent.com/iiabdulrazak/sakani_analysis/main/data/cleaned_data.csv
+Dashboard Link: https://datastudio.google.com/s/twzMjlgl-Vk
