@@ -41,9 +41,6 @@ except:
 #lets play with the dataset
 df = pd.read_csv("../data/Sakani Projects.csv")
 
-#len of the old columns
-print(f'Length of Data (Before Column Filtered): {len(df.columns)}')
-
 #un_wanted columns to delete
 df.drop(['city_id','region_id','region_key','region_order_sequence','city_order_sequence','group_unit_id','promoted','unit_types_1', \
           'unit_types_2','type','resource_id','resource_type','subsidizable','max_street_width','max_unit_age','max_bathroom','driver_room', \
@@ -52,9 +49,6 @@ df.drop(['city_id','region_id','region_key','region_order_sequence','city_order_
 #rename some columns to more clean naming
 df.rename(columns = {'under_construction_status':'construction_status','unit_types_0':'unit_type',\
                      'available_units_for_auctions_count':'available_auctions_units','available_units_count':'available_units'}, inplace=True)
-
-#len of the new columns
-print(f'Length of Data (After Column Filtered): {len(df.columns)}')
 
 #clean row-level data
 df['developer_name'].fillna('لا يوجد مدخل', inplace=True)
