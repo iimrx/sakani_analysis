@@ -1,0 +1,27 @@
+#The name of the build
+name: SonarCloud - QA Testing
+#Declaring the branches and types
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  #Setting the time the test will be running everyday
+  schedule:
+    - cron: '0 * * * *'
+#Starting jobs and workflow
+jobs:
+  SonarCloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest # os system
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2 # do checkout to get the main branch updates
+        with:
+          fetch-depth: 0
+      - name: SonarCloud Scan - Analyzing the Code
+        uses: SonarSource/sonarcloud-github-action@master # start the analysis
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token of the Sonarcloud project
