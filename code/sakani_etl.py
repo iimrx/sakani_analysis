@@ -41,11 +41,6 @@ except:
 #lets play with the dataset
 df = pd.read_csv("../data/Sakani Projects.csv")
 
-#un_wanted columns to delete
-df.drop(['city_id','region_id','region_key','region_order_sequence','city_order_sequence','group_unit_id','promoted','unit_types_1', \
-          'unit_types_2','type','resource_id','resource_type','subsidizable','max_street_width','max_unit_age','max_bathroom','driver_room', \
-          'elevator','basement','delegated_by_broker','maid_room','min_bathroom','min_street_width','min_unit_age','pool','publish','use_register_interest_flag'], axis=1, inplace=True)
-
 #rename some columns to more clean naming
 df.rename(columns = {'under_construction_status':'construction_status','unit_types_0':'unit_type',\
                      'available_units_for_auctions_count':'available_auctions_units','available_units_count':'available_units'}, inplace=True)
@@ -54,6 +49,13 @@ df.rename(columns = {'under_construction_status':'construction_status','unit_typ
 df['developer_name'].fillna('لا يوجد مدخل', inplace=True)
 df['publish_date'].ffill(inplace=True) #filling nan values with prev value
 df['construction_status'].fillna('no entry', inplace=True)
+data['location'] = data['location_lat'].astype(str) +','+ data['location_lon'].astype(str) #create new column to handle the lat,lot location
+
+#un_wanted columns to delete
+df.drop(['city_id','region_id','region_key','region_order_sequence','city_order_sequence','group_unit_id','promoted','unit_types_1', \
+          'unit_types_2','type','resource_id','resource_type','subsidizable','max_street_width','max_unit_age','max_bathroom','driver_room', \
+          'elevator','basement','delegated_by_broker','maid_room','min_bathroom','min_street_width','min_unit_age','pool','publish','use_register_interest_flag', \
+          'location_lat', 'location_lon'], axis=1, inplace=True)
 
 #lets see the dataset after cleaning and before loading it to the DWH
 display(df.head()) #here we see the dataset in style of dataframe
