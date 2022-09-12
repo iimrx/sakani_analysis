@@ -1,0 +1,46 @@
+#The name of the build
+name: data workflow
+#Declaring the branches
+on:
+  push:
+    branches:
+      - 'main'
+  #Setting the time the build will be wunning everyday
+  schedule:
+    - cron: '55 * * * *'
+#Starting jobs and workflow
+jobs:
+  ETL:
+    #Here we establishing the os as needed
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v2
+    #Setting up python version and action setup
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8.10'
+    #Installing all needed dependencies
+    - name: Installing dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install -r requirements.txt
+    #Running the ETL script to install and update the data as structured,
+    #then transfer it to the database
+    - name: Running the ETL and TL
+      run: ./auto_etl.sh
+
+    #Commiting files after updating the dataset
+    - name: Commit data to the Repo
+      run: |
+        git config --local user.email "zaak0101@hotmail.com"
+        git config --local user.name "Abdulrazak A. Othman"
+        git add -A
+        git commit -m "Done Updating (Dataset and DB)" -a --allow-empty
+    #Pushing changes
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        branch: main  
