@@ -2,6 +2,7 @@
 import os
 import pandas as pd
 import zipfile as zp
+import sqlite3 as sql3
 from dotenv import dotenv_values
 from IPython.display import display
 
@@ -16,25 +17,26 @@ kgl_api = KaggleApi()
 kgl_api.authenticate()
 
 #here we declare where our paths is for (main data folder, kaggle dataset, extraction path)
-data_folder = '../data' #main data path
+data_path = '../data' #main data path
+sqlite_path = '../db' #main db path
 kaggle_dataset = 'majedalhulayel/sakani-projects-saudi-arabia' #kaggle dataset path
 
 #lets get the data
-kgl_api.dataset_download_files(kaggle_dataset, data_folder)
+kgl_api.dataset_download_files(kaggle_dataset, data_path)
 
 #unzip the dataset file and save to new dir
 try:
-  if os.path.exists(data_folder): #if the data folder do exists enter here
-    with zp.ZipFile(data_folder+'/sakani-projects-saudi-arabia.zip') as data: #take from original path
-      data.extractall(data_folder) #uzip into the path if exists
-      print(f"Done extracting all files to: {data_folder}") #message
+  if os.path.exists(data_path): #if the data folder do exists enter here
+    with zp.ZipFile(data_path+'/sakani-projects-saudi-arabia.zip') as data: #take from original path
+      data.extractall(data_path) #uzip into the path if exists
+      print(f"Done extracting all files to: {data_path}") #message
       
   else: #if the data folder doesn't exists enter here
-    print(f'Creating new data folder: {data_folder}\n') #message
-    os.mkdir(data_folder) #create new folder if not exists
-    with zp.ZipFile(data_folder+'/sakani-projects-saudi-arabia.zip') as data: #take from original path
-      data.extractall(data_folder) #unzip into the new path
-    print(f"Done extracting all files to: {data_folder}") #message
+    print(f'Creating new data folder: {data_path}\n') #message
+    os.mkdir(data_path) #create new folder if not exists
+    with zp.ZipFile(data_path+'/sakani-projects-saudi-arabia.zip') as data: #take from original path
+      data.extractall(data_path) #unzip into the new path
+    print(f"Done extracting all files to: {data_path}") #message
 except:
   print("Invalid file")
 
@@ -49,7 +51,7 @@ df.rename(columns = {'under_construction_status':'construction_status','unit_typ
 df['developer_name'].fillna('لا يوجد مدخل', inplace=True)
 df['publish_date'].ffill(inplace=True) #filling nan values with prev value
 df['construction_status'].fillna('no entry', inplace=True)
-data['location'] = data['location_lat'].astype(str) +','+ data['location_lon'].astype(str) #create new column to handle the lat,lot location
+df['location'] = df['location_lat'].astype(str) +','+ df['location_lon'].astype(str) #create new column to handle the lat,lot location
 
 #un_wanted columns to delete
 df.drop(['city_id','region_id','region_key','region_order_sequence','city_order_sequence','group_unit_id','promoted','unit_types_1', \
@@ -62,4 +64,19 @@ display(df.head()) #here we see the dataset in style of dataframe
 print(f"Dataset rows/columns: {df.shape}") #here we see the dataset shape after cleaning
 
 #lets save the new data to another file
-df.to_csv(data_folder+'/cleaned_data.csv', index=False)
+print(f"Saving the new data to another file: {data_path}/cleaned_data.csv")
+df.to_csv(data_path+'/cleaned_data.csv', index=False)
+#lets load into sqlite table
+try:
+  if os.path.exists(sqlite_path): #if the data folder do exists enter here
+    engine = sql3.connect(config.get('SQLITE_DB'))
+    df.to_sql(config.get('SQLITE_TABLE'), engine, index=False)
+    print(f"Loading data into sqlite3 database: {sqlite_path}")
+
+  else: #if the data folder doesn't exists enter here
+    print(f'Creating new db folder: {sqlite_path}\n') #message
+    os.mkdir(sqlite_path) #create new folder if not exists
+    engine = sql3.connect(config.get('SQLITE_DB'))
+    df.to_sql(config.get('SQLITE_TABLE'), engine, index=False)
+except Exception as e:
+  print(f"Invalid db ... \n{e}")
