@@ -5,5 +5,8 @@
 
 # Sakani Dashboard Using GDS, Python & Github Actions
 ![Sakani Dashboard](https://github.com/iiabdulrazak/sakani_analysis/blob/main/images%20%26%20docs/Sakani%20Dashboard%20-%20Riyadh%20Region.png)
-Data Link: https://raw.githubusercontent.com/iiabdulrazak/sakani_analysis/main/data/cleaned_data.csv <br>
-Dashboard Link: https://datastudio.google.com/s/twzMjlgl-Vk <br>
+
+# Links & Resources
+Dashboard Link: (https://datastudio.google.com/s/twzMjlgl-Vk) <br>
+Original Data Link: (https://www.kaggle.com/datasets/majedalhulayel/sakani-projects-saudi-arabia) <br>
+Cleaned Data Link: (https://raw.githubusercontent.com/iiabdulrazak/sakani_analysis/main/data/cleaned_data.csv) <br>
