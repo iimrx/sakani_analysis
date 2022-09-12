@@ -71,12 +71,13 @@ try:
   if os.path.exists(sqlite_path): #if the data folder do exists enter here
     engine = sql3.connect(config.get('SQLITE_DB'))
     df.to_sql(config.get('SQLITE_TABLE'), engine, index=False)
-    print(f"Loading data into sqlite3 database: {sqlite_path}")
+    print(f"Loading data into sqlite3 database ...!")
 
   else: #if the data folder doesn't exists enter here
     print(f'Creating new db folder: {sqlite_path}\n') #message
     os.mkdir(sqlite_path) #create new folder if not exists
     engine = sql3.connect(config.get('SQLITE_DB'))
     df.to_sql(config.get('SQLITE_TABLE'), engine, index=False)
+    print(f"Loading data into sqlite3 database ...!")
 except Exception as e:
   print(f"Invalid db ... \n{e}")
