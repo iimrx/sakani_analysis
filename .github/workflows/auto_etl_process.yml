@@ -1,5 +1,5 @@
 #The name of the build
-name: data workflow
+name: Data Flow - ETL
 #Declaring the branches
 on:
   push:
@@ -18,28 +18,28 @@ jobs:
       uses: actions/checkout@v2
     #Setting up python version and action setup
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
-        python-version: '3.8.10'
+        python-version: '3.10'
     #Installing all needed dependencies
-    - name: Installing dependencies
+    - name: Installing Dependencies
       run: |
         python3 -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r .../requirements.txt
     #Running the ETL script to install and update the data as structured,
     #then transfer it to the database
-    - name: Running the ETL and TL
-      run: ./auto_etl.sh
+    - name: Running ETL Flow 
+      run: .../auto_etl.sh
 
     #Commiting files after updating the dataset
-    - name: Commit data to the Repo
+    - name: Commit New Changes
       run: |
         git config --local user.email "zaak0101@hotmail.com"
         git config --local user.name "Abdulrazak A. Othman"
         git add -A
         git commit -m "Done Updating (Dataset and DB)" -a --allow-empty
     #Pushing changes
-    - name: Push changes
+    - name: Push New Changes
       uses: ad-m/github-push-action@v0.6.0
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
