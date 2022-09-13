@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 ./code/sakani_etl.py #extraction, transformation and loading data
+python3 code/sakani_etl.py #extraction, transformation and loading data
 echo "Finished ETL Proccess.!"
 sleep 5
 
