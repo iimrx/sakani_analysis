@@ -54,7 +54,7 @@ df['construction_status'].fillna('no entry', inplace=True)
 df['location'] = df['location_lat'].astype(str) +','+ df['location_lon'].astype(str) #create new column to handle the lat,lot location
 
 #un_wanted columns to delete
-df.drop(['region_id','region_key','region_order_sequence','city_order_sequence','group_unit_id','promoted','unit_types_1', \
+df.drop(['city_id','region_id','region_key','region_order_sequence','city_order_sequence','group_unit_id','promoted','unit_types_1', \
           'unit_types_2','type','resource_id','resource_type','subsidizable','max_street_width','max_unit_age','max_bathroom','driver_room', \
           'elevator','basement','delegated_by_broker','maid_room','min_bathroom','min_street_width','min_unit_age','pool','publish','use_register_interest_flag', \
           'location_lat', 'location_lon'], axis=1, inplace=True)

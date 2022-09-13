@@ -26,10 +26,7 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip install -r requirements.txt
-    #Running the ETL script to install and update the data as structured,
-    #then transfer it to the database
-    - name: Running ETL Flow 
-      run: git update-index --chmod=+x ./auto_etl.sh
+        python3 ./code/sakani_etl.py
 
     #Commiting files after updating the dataset
     - name: Commit New Changes
