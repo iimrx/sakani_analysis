@@ -1,5 +1,5 @@
 #The name of the build
-name: SonarCloud - QA Testing
+name: SonarCloud - Test
 #Declaring the branches and types
 on:
   push:
