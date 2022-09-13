@@ -29,7 +29,7 @@ jobs:
     #Running the ETL script to install and update the data as structured,
     #then transfer it to the database
     - name: Running ETL Flow 
-      run: .../auto_etl.sh
+      run: ./auto_etl.sh
 
     #Commiting files after updating the dataset
     - name: Commit New Changes
