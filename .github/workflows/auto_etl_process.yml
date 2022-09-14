@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v2
     #Setting up python version and action setup
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v2
       with:
         python-version: '3.6.9'
     #Installing all needed dependencies
