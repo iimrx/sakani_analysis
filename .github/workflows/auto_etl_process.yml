@@ -28,7 +28,7 @@ jobs:
         pip install -r requirements.txt
     #Running ETL Flow Process
     - name: Running ETL Flow 
-      run: python code/sakani_etl.py
+      run: cd code && python3 sakani_etl.py
 
     #Commiting files after updating the dataset
     - name: Commit New Changes
