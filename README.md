@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/repo-size/iiabdulrazak/sakani_analysis?label=project%20size)
 
 ## Building Sakani Dashboard Using CI/CD, Automation, SonarCloud and GDS
-![Sakani Dashboard](https://github.com/iiabdulrazak/sakani_analysis/blob/main/images%20%26%20docs/Sakani%20Dashboard%20-%20Riyadh%20Region.png)
+![Sakani Dashboard](https://github.com/iiabdulrazak/sakani_analysis/blob/main/imgs%20%26%20docs/Sakani%20Dashboard%20-%20Riyadh%20Region.png)
 
 ## Links & Resources
 Dashboard Link: (https://datastudio.google.com/s/twzMjlgl-Vk) <br>
