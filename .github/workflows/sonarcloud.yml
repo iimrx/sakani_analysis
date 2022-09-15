@@ -7,12 +7,12 @@ on:
       - 'main'
   #Setting the time the test will be running everyday
   schedule:
-    - cron: '55 * * * *'
+    - cron: '35 * * * *'
 #Starting jobs and workflow
 jobs:
   SonarCloud:
     name: SonarCloud
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2

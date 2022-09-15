@@ -7,12 +7,12 @@ on:
       - 'main'
   #Setting the time the build will be wunning everyday
   schedule:
-    - cron: '55 * * * *'
+    - cron: '30 * * * *'
 #Starting jobs and workflow
 jobs:
   ETL:
     #Here we establishing the os as needed
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Clone Repository
       uses: actions/checkout@v2
@@ -28,7 +28,9 @@ jobs:
         pip install -r requirements.txt
     #Running ETL Flow Process
     - name: Running ETL Flow 
-      run: cd code/ && python sakani_etl.py
+      run: |
+        cd code/ && python sakani_etl.py
+        echo "Done the process of the ETL!"
       shell: sh
 
     #Commiting files after updating the dataset
