@@ -37,8 +37,8 @@ try:
     with zp.ZipFile(data_path+'/sakani-projects-saudi-arabia.zip') as data: #take from original path
       data.extractall(data_path) #unzip into the new path
     print(f"Done extracting all files to: {data_path}") #message
-except:
-  print("Invalid file")
+except Exception as e:
+  print(f"Invalid file \n{e}")
 
 #lets play with the dataset
 df = pd.read_csv("../data/Sakani Projects.csv")
