@@ -4,10 +4,10 @@ name: DataFlow - ETL
 on:
   push:
     branches:
-      - 'main'
+      - 'dev'
   #Setting the time the build will be wunning everyday
-  schedule:
-    - cron: '30 * * * *'
+  # schedule:
+  #   - cron: '30 * * * *'
 #Starting jobs and workflow
 jobs:
   ETL:
