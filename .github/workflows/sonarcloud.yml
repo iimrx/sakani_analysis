@@ -6,8 +6,8 @@ on:
     branches:
       - 'main'
   #Setting the time the test will be running everyday
-  schedule:
-    - cron: '35 * * * *'
+  # schedule:
+  #   - cron: '35 * * * *'
 #Starting jobs and workflow
 jobs:
   SonarCloud:
